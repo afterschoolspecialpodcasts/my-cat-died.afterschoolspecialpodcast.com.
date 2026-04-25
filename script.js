@@ -1,5 +1,6 @@
 /* =================================================================
    MY CAT DIED — Interactions (Vanilla JS only)
+   After School with Friends Collective
    ================================================================= */
 (function () {
   'use strict';
@@ -43,17 +44,14 @@
       else openMenu();
     });
 
-    // Close on link tap
     menu.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', closeMenu);
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMenu();
     });
 
-    // Close on resize past breakpoint
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768) closeMenu();
     });
@@ -87,7 +85,6 @@
 
     reveals.forEach(function (el) { io.observe(el); });
   } else {
-    // Fallback: just show everything
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
@@ -140,9 +137,7 @@
     heroVideo.setAttribute('muted', '');
     var p = heroVideo.play();
     if (p && typeof p.catch === 'function') {
-      p.catch(function () {
-        /* autoplay blocked — poster will show */
-      });
+      p.catch(function () { /* autoplay blocked — poster will show */ });
     }
   }
 })();
