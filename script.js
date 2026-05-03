@@ -87,32 +87,24 @@
     heroVideo.setAttribute('playsinline', '');
     var p = heroVideo.play();
     if (p && typeof p.catch === 'function') {
-      p.catch(function () {
-        // autoplay blocked — poster will display until user interacts
-      });
+      p.catch(function () { /* autoplay blocked — poster shows */ });
     }
   }
 
-  // ---------- Subtle mouse parallax for hero (desktop only) ----------
-  var heroScene = document.querySelector('.hero-scene');
-  var videoStage = document.querySelector('.hero-video-stage');
-  if ((heroScene || videoStage) &&
-      window.matchMedia &&
+  // ---------- Subtle mouse parallax for hero ships (desktop only) ----------
+  if (window.matchMedia &&
       window.matchMedia('(min-width: 1025px)').matches &&
       window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-    var ship1 = document.querySelector('.layer-ship-1');
-    var ship2 = document.querySelector('.layer-ship-2');
-    var ship3 = document.querySelector('.layer-ship-3');
-    var palms = document.querySelector('.layer-palms');
+    var ship1 = document.querySelector('.ship-1');
+    var ship2 = document.querySelector('.ship-2');
+    var ship3 = document.querySelector('.ship-3');
 
     document.addEventListener('mousemove', function (e) {
       var x = (e.clientX / window.innerWidth - 0.5) * 2;
       var y = (e.clientY / window.innerHeight - 0.5) * 2;
-      if (ship1)     ship1.style.transform     = 'translate(' + (x * 12) + 'px, ' + (y * 8) + 'px)';
-      if (ship2)     ship2.style.transform     = 'translate(' + (x * -10) + 'px, ' + (y * 6) + 'px)';
-      if (ship3)     ship3.style.transform     = 'translate(' + (x * 8) + 'px, ' + (y * -5) + 'px)';
-      if (palms)     palms.style.transform     = 'rotate(' + (x * 0.6) + 'deg)';
-      if (videoStage) videoStage.style.transform = 'translate(' + (x * -4) + 'px, ' + (y * -2) + 'px)';
+      if (ship1) ship1.style.transform = 'translate(' + (x * 12) + 'px, ' + (y * 8) + 'px)';
+      if (ship2) ship2.style.transform = 'translate(' + (x * -10) + 'px, ' + (y * 6) + 'px) rotate(-2deg)';
+      if (ship3) ship3.style.transform = 'translate(' + (x * 8) + 'px, ' + (y * -5) + 'px)';
     });
   }
 

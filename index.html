@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#140028" />
+  <meta name="theme-color" content="#0b001a" />
 
   <title>My Cat Died — A Podcast About Life, Laughter & Mental Health</title>
   <meta name="description" content="My Cat Died is a podcast about life, laughter & mental health. Hosted by Staffman. Proudly part of the After School with Friends Collective." />
@@ -71,6 +71,10 @@
 </head>
 <body>
 
+  <!-- Star background system (visible, animated) -->
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="page-overlay" aria-hidden="true"></div>
+
   <!-- ============== HEADER ============== -->
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
@@ -108,77 +112,104 @@
 
   <main>
 
-    <!-- ============== 1. HERO (LAYERED + VIDEO FOREGROUND) ============== -->
+    <!-- ============== 1. HERO — bright video, light overlay ============== -->
     <section class="hero" id="hero">
-      <!-- Layered background scene -->
-      <div class="hero-scene" aria-hidden="true">
-        <img class="layer layer-bg"        src="images/hero-bg.png"         alt="" loading="eager" />
-        <img class="layer layer-city-1"    src="images/hero-city.png"       alt="" loading="eager" />
-        <img class="layer layer-city-3"    src="images/hero-city3.png"      alt="" loading="eager" />
-        <img class="layer layer-palms"     src="images/hero-palms.png"      alt="" loading="eager" />
-        <img class="layer layer-ship-1"    src="images/hero-ship.png"       alt="" loading="lazy" />
-        <img class="layer layer-ship-2"    src="images/hero-spaceship2.png" alt="" loading="lazy" />
-        <img class="layer layer-ship-3"    src="images/hero-spaceship3.png" alt="" loading="lazy" />
+      <!-- Floating ships (subtle motion) -->
+      <div class="hero-ships" aria-hidden="true">
+        <img class="ship ship-1" src="images/hero-ship.png" alt="" loading="lazy" />
+        <img class="ship ship-2" src="images/hero-spaceship2.png" alt="" loading="lazy" />
+        <img class="ship ship-3" src="images/hero-spaceship3.png" alt="" loading="lazy" />
       </div>
 
-      <!-- Video foreground (the focal point) -->
-      <div class="hero-video-stage" aria-hidden="true">
-        <div class="hero-video-glow"></div>
-        <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          poster="images/host-main.png">
-          <source src="videos/hero-foreground.MP4" type="video/mp4" />
-        </video>
-      </div>
-
-      <!-- Hero copy -->
-      <div class="container hero-content">
-        <div class="hero-copy">
+      <div class="container hero-grid">
+        <div class="hero-text">
           <img class="hero-logo" src="images/logo-main.png" alt="" width="280" height="200" loading="eager" />
-
           <h1 class="hero-title">MY CAT DIED</h1>
           <p class="hero-tagline">&hellip;And I started another podcast.</p>
 
           <div class="hero-ctas">
-            <a href="https://open.spotify.com/show/7yxQ1P6vtBlSaiVeNswRfO" class="btn btn-gold" target="_blank" rel="noopener">Listen Now</a>
+            <a href="https://www.youtube.com/" class="btn btn-gold" target="_blank" rel="noopener">Listen Now</a>
 
             <ul class="platform-icons" aria-label="Listen on">
               <li><a href="https://open.spotify.com/show/7yxQ1P6vtBlSaiVeNswRfO" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
                 <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.6 14.4a.7.7 0 0 1-1 .2A12 12 0 0 0 7 15.4a.7.7 0 1 1-.4-1.3 13.4 13.4 0 0 1 10.6 1.3.7.7 0 0 1 .4.9Zm1.2-2.7a.9.9 0 0 1-1.2.3 14.6 14.6 0 0 0-10.5-1.5.9.9 0 1 1-.5-1.7A16.4 16.4 0 0 1 17.6 12.5a.9.9 0 0 1 .2 1.2Zm.1-2.8a17.5 17.5 0 0 0-12-1.7 1.1 1.1 0 1 1-.6-2.1 19.7 19.7 0 0 1 13.5 1.9 1.1 1.1 0 0 1-1 1.9Z"/></svg>
               </a></li>
-              <li><a href="https://podcasts.google.com" target="_blank" rel="noopener" aria-label="Google Podcasts" title="Google Podcasts">
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="2.4" fill="currentColor"/><path d="M12 4v3M12 17v3M5 8v8M19 8v8M8.5 6v12M15.5 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              <li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M23 7.6a3 3 0 0 0-2.1-2.1C19.1 5 12 5 12 5s-7.1 0-8.9.5A3 3 0 0 0 1 7.6 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.4a3 3 0 0 0 2.1 2.1C4.9 19 12 19 12 19s7.1 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.6ZM10 15.5v-7l6 3.5Z"/></svg>
               </a></li>
-              <li><a href="#" target="_blank" rel="noopener" aria-label="More platforms" title="More platforms">
+              <li><a href="#" target="_blank" rel="noopener" aria-label="More platforms" title="More">
                 <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18" cy="12" r="1.6" fill="currentColor"/></svg>
               </a></li>
             </ul>
           </div>
         </div>
+
+        <div class="hero-video-wrapper">
+          <div class="hero-video-glow" aria-hidden="true"></div>
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="images/host-main.png">
+            <source src="videos/hero-foreground.MP4" type="video/mp4" />
+          </video>
+        </div>
       </div>
+
+      <div class="hero-overlay" aria-hidden="true"></div>
     </section>
 
     <!-- ============== 2. PODCAST STRIP ============== -->
     <section class="description">
       <div class="container reveal">
         <h2 class="description-title">A Podcast About Life, Laughter &amp; Mental Health</h2>
-        <p class="description-sub">Raw conversations. Real stories. A little humor. A lot of healing.</p>
         <p class="description-sub">We're here for the after school hours of life.</p>
       </div>
     </section>
 
-    <!-- ============== 3. FEATURED EPISODE ============== -->
+    <!-- ============== 3. THREE-COLUMN GRID ============== -->
+    <section class="trio">
+      <div class="container">
+        <ul class="trio-grid">
+          <li class="trio-card reveal">
+            <div class="trio-art">
+              <img src="images/mic-icon.png" alt="" width="120" height="120" loading="lazy" />
+            </div>
+            <h3 class="trio-title">Latest Episode</h3>
+            <p class="trio-text">Unfiltered thoughts on life, healing, and everything in between.</p>
+            <a href="https://www.youtube.com/" class="btn btn-gold btn-small" target="_blank" rel="noopener">Listen Now</a>
+          </li>
+
+          <li class="trio-card trio-card-center reveal">
+            <div class="trio-art">
+              <img src="images/collective-stamp.png" alt="After School with Friends Collective seal" width="160" height="160" loading="lazy" />
+            </div>
+            <h3 class="trio-title">The Collective</h3>
+            <p class="trio-text">A safe space. A real community. You're not alone — let's grow together.</p>
+            <a href="https://afterschoolspecialpodcast.com/collective.html" class="btn btn-gold btn-small" target="_blank" rel="noopener">Explore</a>
+          </li>
+
+          <li class="trio-card reveal">
+            <div class="trio-art">
+              <img src="images/hero-palms.png" alt="" width="220" height="180" loading="lazy" />
+            </div>
+            <h3 class="trio-title">Join the Journey</h3>
+            <p class="trio-text">Share your story. Suggest a topic. Be part of the conversation.</p>
+            <a href="contact.html" class="btn btn-gold btn-small">Get Involved</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============== 4. FEATURED SPOTIFY EMBED ============== -->
     <section class="featured" id="featured">
       <div class="container">
         <div class="section-head reveal">
-          <span class="section-kicker">Latest Episode</span>
-          <h2 class="section-title">Sunday Ramble</h2>
-          <p class="section-sub">Unfiltered thoughts on life, healing, and everything in between.</p>
+          <span class="section-kicker">Now Streaming</span>
+          <h2 class="section-title">Latest from the Show</h2>
         </div>
 
         <div class="featured-frame reveal">
@@ -195,19 +226,16 @@
       </div>
     </section>
 
-    <!-- ============== 4. PROUDLY PART OF ============== -->
+    <!-- ============== 5. PROUDLY PART OF ============== -->
     <section class="proudly" id="proudly">
-      <img class="proudly-watermark" src="images/collective-stamp.png" alt="" loading="lazy" aria-hidden="true" />
-
       <div class="container proudly-inner reveal">
-        <img class="proudly-stamp" src="images/collective-stamp.png" alt="After School with Friends Collective seal" width="200" height="200" loading="lazy" />
+        <img class="proudly-stamp" src="images/collective-stamp.png" alt="After School with Friends Collective seal" width="180" height="180" loading="lazy" />
         <h2 class="proudly-title">Proudly part of the<br/>After School with Friends Collective.</h2>
-        <p class="proudly-text">A safe space. A real community. You're not alone. Let's grow together.</p>
         <a href="https://afterschoolspecialpodcast.com/collective.html" class="btn btn-gold btn-large btn-glow" target="_blank" rel="noopener">Explore the Collective</a>
       </div>
     </section>
 
-    <!-- ============== 5. QUOTE ============== -->
+    <!-- ============== 6. QUOTE ============== -->
     <section class="quote-section">
       <div class="container reveal">
         <span class="quote-stars" aria-hidden="true">✦</span>
@@ -220,10 +248,30 @@
     </section>
   </main>
 
-  <!-- ============== FOOTER ============== -->
+  <!-- ============== ENHANCED FOOTER ============== -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="footer-copy">&copy; 2026 After School Special Podcast. All rights reserved.</p>
+    <div class="footer-cities" aria-hidden="true">
+      <img class="footer-city footer-city-left" src="images/hero-city.png" alt="" loading="lazy" />
+      <img class="footer-city footer-city-right" src="images/hero-city.png" alt="" loading="lazy" />
+    </div>
+
+    <div class="container footer-inner">
+      <ul class="footer-socials" aria-label="Follow us">
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2 0 1.8.2 2.3.4.6.2 1 .5 1.4.9.4.4.7.9.9 1.4.2.5.4 1.1.4 2.3.1 1.2.1 1.6.1 4.7s0 3.5-.1 4.7c0 1.2-.2 1.8-.4 2.3-.2.6-.5 1-.9 1.4-.4.4-.9.7-1.4.9-.5.2-1.1.4-2.3.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2 0-1.8-.2-2.3-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.9-.9-1.4-.2-.5-.4-1.1-.4-2.3C2.2 15.5 2.2 15.1 2.2 12s0-3.5.1-4.7c0-1.2.2-1.8.4-2.3.2-.6.5-1 .9-1.4.4-.4.9-.7 1.4-.9.5-.2 1.1-.4 2.3-.4C8.5 2.2 8.9 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1 0-1.7.2-2.1.3-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.1.4-.3 1-.3 2.1C2.8 9.5 2.8 9.9 2.8 12s0 2.5.1 3.7c0 1.1.2 1.7.3 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.1 1 .3 2.1.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1 0 1.7-.2 2.1-.3.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.1-.4.3-1 .3-2.1.1-1.2.1-1.6.1-3.7s0-2.5-.1-3.7c0-1.1-.2-1.7-.3-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.1-1-.3-2.1-.3C15.5 4 15.1 4 12 4Zm0 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Zm5.2-2.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+        </a></li>
+        <li><a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5H15c-1.2 0-1.6.7-1.6 1.5V12h2.8l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+        </a></li>
+        <li><a href="https://open.spotify.com/show/7yxQ1P6vtBlSaiVeNswRfO" target="_blank" rel="noopener" aria-label="Spotify">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm4.6 14.4a.7.7 0 0 1-1 .2A12 12 0 0 0 7 15.4a.7.7 0 1 1-.4-1.3 13.4 13.4 0 0 1 10.6 1.3.7.7 0 0 1 .4.9Zm1.2-2.7a.9.9 0 0 1-1.2.3 14.6 14.6 0 0 0-10.5-1.5.9.9 0 1 1-.5-1.7A16.4 16.4 0 0 1 17.6 12.5a.9.9 0 0 1 .2 1.2Zm.1-2.8a17.5 17.5 0 0 0-12-1.7 1.1 1.1 0 1 1-.6-2.1 19.7 19.7 0 0 1 13.5 1.9 1.1 1.1 0 0 1-1 1.9Z"/></svg>
+        </a></li>
+        <li><a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M23 7.6a3 3 0 0 0-2.1-2.1C19.1 5 12 5 12 5s-7.1 0-8.9.5A3 3 0 0 0 1 7.6 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.4a3 3 0 0 0 2.1 2.1C4.9 19 12 19 12 19s7.1 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.6ZM10 15.5v-7l6 3.5Z"/></svg>
+        </a></li>
+      </ul>
+
+      <p class="footer-copy">My Cat Died. All rights reserved.</p>
       <p class="footer-credit">Website by <a href="https://dysondigital.com/" target="_blank" rel="noopener">Dyson Digital</a> &middot; <a href="https://dysondigital.com/" target="_blank" rel="noopener">dysondigital.com</a></p>
     </div>
   </footer>
