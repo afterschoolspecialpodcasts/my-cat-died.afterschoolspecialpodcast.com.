@@ -1,25 +1,20 @@
 /* =================================================================
-   MY CAT DIED — Interactions (Vanilla JS only)
-   After School with Friends Collective
+   MY CAT DIED — Multi-page interactions (Vanilla JS)
    ================================================================= */
 (function () {
   'use strict';
 
-  // ---------- Year stamp ----------
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  // ---------- Nav: scrolled state ----------
-  var nav = document.getElementById('nav');
+  // ---------- Header scroll state ----------
+  var header = document.getElementById('siteHeader');
   function onScroll() {
-    if (!nav) return;
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
+    if (!header) return;
+    if (window.scrollY > 30) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ---------- Mobile menu toggle ----------
+  // ---------- Mobile menu ----------
   var toggle = document.getElementById('navToggle');
   var menu = document.getElementById('mobileMenu');
 
@@ -57,7 +52,7 @@
     });
   }
 
-  // ---------- Smooth scroll with nav offset ----------
+  // ---------- Smooth scroll for in-page anchors ----------
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var id = a.getAttribute('href');
@@ -65,7 +60,7 @@
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      var offset = nav ? nav.offsetHeight : 0;
+      var offset = header ? header.offsetHeight : 0;
       var top = target.getBoundingClientRect().top + window.scrollY - offset + 1;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
@@ -81,15 +76,31 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ---------- Form: async submit to Formspree ----------
-  var form = document.querySelector('.submit-form');
+  // ---------- Subtle mouse parallax for hero layers (desktop only) ----------
+  var heroScene = document.querySelector('.hero-scene');
+  if (heroScene && window.matchMedia && window.matchMedia('(min-width: 1025px)').matches &&
+      window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    var ship = heroScene.querySelector('.layer-ship');
+    var foreground = heroScene.querySelector('.layer-foreground');
+    var palms = heroScene.querySelector('.layer-palms');
+
+    document.addEventListener('mousemove', function (e) {
+      var x = (e.clientX / window.innerWidth - 0.5) * 2;   // -1..1
+      var y = (e.clientY / window.innerHeight - 0.5) * 2;
+      if (ship)       ship.style.transform       = 'translate(' + (x * 12) + 'px, ' + (y * 8) + 'px)';
+      if (foreground) foreground.style.transform = 'translate(' + (x * -6) + 'px, ' + (y * -3) + 'px)';
+      if (palms)      palms.style.transform      = 'rotate(' + (x * 0.6) + 'deg)';
+    });
+  }
+
+  // ---------- Contact form async submit ----------
+  var form = document.querySelector('.contact-form');
   var note = document.getElementById('formNote');
 
   if (form) {
@@ -109,7 +120,7 @@
       .then(function (res) {
         if (res.ok) {
           form.reset();
-          if (note) note.textContent = 'Thank you — your thought has been sent.';
+          if (note) note.textContent = 'Thank you — your message has been sent.';
           return;
         }
         return res.json().then(function (d) {
@@ -128,16 +139,5 @@
         }
       });
     });
-  }
-
-  // ---------- Hero video: ensure autoplay on iOS ----------
-  var heroVideo = document.querySelector('.hero-video');
-  if (heroVideo) {
-    heroVideo.muted = true;
-    heroVideo.setAttribute('muted', '');
-    var p = heroVideo.play();
-    if (p && typeof p.catch === 'function') {
-      p.catch(function () { /* autoplay blocked — poster will show */ });
-    }
   }
 })();
