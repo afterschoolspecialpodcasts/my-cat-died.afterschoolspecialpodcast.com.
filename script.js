@@ -79,32 +79,62 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ---------- Hero video: ensure autoplay (iOS-safe) ----------
-  var heroVideo = document.querySelector('.hero-video');
-  if (heroVideo) {
+  // ---------- Hero video(s): ensure autoplay (iOS-safe) + filename fallback ----------
+  // Two videos coexist (desktop + mobile); CSS shows the right one. Treat each independently.
+  var heroVideos = document.querySelectorAll('.hero-video');
+  heroVideos.forEach(function (heroVideo) {
     heroVideo.muted = true;
     heroVideo.setAttribute('muted', '');
     heroVideo.setAttribute('playsinline', '');
+
+    var isMobileVideo = heroVideo.classList.contains('hero-video-mobile');
+
+    // Filename fallback list — different for mobile vs desktop video
+    var fallbacks = isMobileVideo ? [
+      'videos/hero-foregroundmobile.mp4',
+      'videos/hero-foregroundmobile.MP4',
+      'videos/hero-foregroundmobile.MOV',
+      'videos/hero-foregroundmobile.mov'
+    ] : [
+      'videos/hero-foreground.mp4',
+      'videos/hero-foreground.MP4',
+      'videos/hero-foreground.MOV',
+      'videos/hero-foreground.mov'
+    ];
+
+    heroVideo.addEventListener('error', function tryFallback() {
+      var idx = parseInt(heroVideo.dataset.fallbackIdx || '0', 10);
+      if (idx >= fallbacks.length) return;
+      heroVideo.dataset.fallbackIdx = (idx + 1).toString();
+      while (heroVideo.firstChild) heroVideo.removeChild(heroVideo.firstChild);
+      heroVideo.src = fallbacks[idx];
+      heroVideo.load();
+    }, true);
+
     var p = heroVideo.play();
     if (p && typeof p.catch === 'function') {
-      p.catch(function () { /* autoplay blocked — poster shows */ });
+      p.catch(function () { /* autoplay blocked — element shows nothing until user interacts */ });
     }
-  }
+  });
 
-  // ---------- Subtle mouse parallax for hero ships (desktop only) ----------
+  // ---------- Subtle mouse parallax for hero scene (desktop only) ----------
   if (window.matchMedia &&
       window.matchMedia('(min-width: 1025px)').matches &&
       window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     var ship1 = document.querySelector('.ship-1');
     var ship2 = document.querySelector('.ship-2');
     var ship3 = document.querySelector('.ship-3');
+    var aura = document.querySelector('.hero-aura');
+    var stage = document.querySelector('.hero-video-stage');
 
     document.addEventListener('mousemove', function (e) {
       var x = (e.clientX / window.innerWidth - 0.5) * 2;
       var y = (e.clientY / window.innerHeight - 0.5) * 2;
       if (ship1) ship1.style.transform = 'translate(' + (x * 12) + 'px, ' + (y * 8) + 'px)';
       if (ship2) ship2.style.transform = 'translate(' + (x * -10) + 'px, ' + (y * 6) + 'px) rotate(-2deg)';
-      if (ship3) ship3.style.transform = 'translate(' + (x * 8) + 'px, ' + (y * -5) + 'px)';
+      if (ship3) ship3.style.transform = 'translate(' + (x * 8) + 'px, ' + (y * -5) + 'px) rotate(2deg)';
+      if (aura)  aura.style.transform  = 'translate(' + (x * -6) + 'px, ' + (y * -4) + 'px)';
+      if (stage) stage.style.transform = 'translate(' + (x * -4) + 'px, ' + (y * -2) + 'px)';
     });
   }
 
